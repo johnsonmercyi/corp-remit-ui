@@ -1,0 +1,91 @@
+/*Mobile First Style*/
+/* Customize the label (the container) */
+.CheckBox {
+    display            : block;
+    position           : relative;
+    padding-left       : 35px;
+    /* margin-bottom   : 12px; */
+    cursor             : pointer;
+    font-size          : 1rem;
+    -webkit-user-select: none;
+    -moz-user-select   : none;
+    -ms-user-select    : none;
+    user-select        : none;
+
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+.Label {
+    height    : 100%;
+    color     : #9c6644;
+    transition: all .5s ease-in-out;
+}
+
+/* Hide the browser's default checkbox */
+.CheckBox input {
+    position: absolute;
+    opacity : 0;
+    cursor  : pointer;
+    height  : 0;
+    width   : 0;
+}
+
+/* Create a custom checkbox */
+.CheckMark {
+    position        : absolute;
+    top             : 0px;
+    left            : 0;
+    height          : 20.5px;
+    width           : 25px;
+    background-color: #eee;
+
+    transition: all .5s ease-in-out;
+
+    border       : 2px solid #7f5539;
+    border-radius: 0.2rem;
+}
+
+/* On mouse-over, add a grey background color */
+.CheckBox:hover input~.CheckMark {
+    /* background-color: #ccc; */
+
+}
+
+.CheckBox:hover .Label {
+    color: #ffd166;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CheckBox input:checked~.CheckMark {
+    background-color: #7f5539;
+}
+
+/* Create the CheckMark/indicator (hidden when not checked) */
+.CheckMark:after {
+    content : "";
+    position: absolute;
+    display : none;
+}
+
+/* Show the CheckMark when checked */
+.CheckBox input:checked~.CheckMark:after {
+    display: block;
+}
+
+/* Style the CheckMark/indicator */
+.CheckBox .CheckMark:after {
+    left             : 7px;
+    top              : 1px;
+    width            : 7px;
+    height           : 12px;
+    border           : solid white;
+    border-width     : 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform    : rotate(45deg);
+    transform        : rotate(45deg);
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {}
