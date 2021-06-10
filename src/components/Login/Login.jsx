@@ -45,7 +45,7 @@ class Login extends Component {
                     </div>
 
                     <div className={style.Body}>
-                        {/* <h1 className={style.Header}>Login</h1> */}
+                        <h1 className={style.Header}>Please Login</h1>
                         <div className={style.Form}>
                             <TextField
                                 onChangeHandler={this.onChangeHandler}
@@ -75,18 +75,19 @@ class Login extends Component {
                             </div>
 
                             <div className={style.BodyFooter}>
-                                <a 
-                                id={style.ForgetPassword}
-                                href="javacript:void(0)">Forgot Password? </a>
                                 <a
-                                    id={style.SignUp}
-                                    href="javacript:void(0)">Sign Up! </a>
+                                    id={style.ForgetPassword}
+                                    href="javacript:void(0)">Forgot Password? </a>
+                            
                             </div>
                         </div>
                     </div>
 
                     <div className={style.Footer}>
-
+                        <span>New to CooRe?</span>
+                        <a
+                            id={style.SignUp}
+                            href="javacript:void(0)">Sign Up! </a>
                     </div>
                 </div>
             </div>
