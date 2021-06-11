@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 
 import style from './Layout.module.css'
 import { Header, Main } from '../HtmlBodyParts/HtmlBodyParts';
-import { withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import Login from '../../components/Login/Login';
+import ProtectedRoute from '../../util/route/ProtectedRoute';
+import Dashboard from '../../components/Dashboard/Dashboard';
 
 const { Provider, Consumer } = React.createContext();
 
@@ -36,6 +39,7 @@ class Layout extends Component {
     }
 
     componentDidMount() {
+        localStorage.removeItem("userAuthToken");
         this.updateDimensions();//updates dimensions
         window.addEventListener('resize', this.updateDimensions); //registers window resize event listener
     }
@@ -54,7 +58,7 @@ class Layout extends Component {
 
     render() {
 
-        console.log("Layout.jsx");
+        console.log(this.props.match.path + "login");
 
         return (
 
@@ -83,7 +87,15 @@ class Layout extends Component {
                     </Header>
 
                     <Main>
-                        App main Body
+                        <Switch>
+
+                            {/* Dashboard Component*/}
+                            <Route path={this.props.match.path} render={(props) => (
+                                <Dashboard {...props} />
+                            )} />
+
+
+                        </Switch>
                     </Main>
                 </div>
 

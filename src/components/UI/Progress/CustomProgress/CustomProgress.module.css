@@ -1,0 +1,45 @@
+.CustomProgress.Rotate {
+    width: fit-content;
+    height: fit-content;
+    animation: rotation 2s;
+
+    margin-bottom: 1rem;
+}
+
+.CustomProgress.Linear {
+    animation-timing-function: linear;
+}
+
+.CustomProgress.Infinite {
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+
+
+
+/*
+  
+  .rotate {
+    animation: rotation 2s infinite linear;
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+  
+  */
