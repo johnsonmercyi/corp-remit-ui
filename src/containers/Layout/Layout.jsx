@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 
 import style from './Layout.module.css'
 import { Header, Main } from '../HtmlBodyParts/HtmlBodyParts';
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import Login from '../../components/Login/Login';
-import ProtectedRoute from '../../util/route/ProtectedRoute';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Dashboard from '../../components/Dashboard/Dashboard';
+import Toolbar from '../../components/UI/Toolbar/Toolbar';
 
 const { Provider, Consumer } = React.createContext();
 
@@ -23,8 +22,8 @@ class Layout extends Component {
             searchFieldToggled: false,
             searchString: "",
             userAuth: true,
-            sideMenuGroups: {
-
+            sideMenuGroups:{
+                
             }
         }
     }
@@ -39,7 +38,7 @@ class Layout extends Component {
     }
 
     componentDidMount() {
-        localStorage.removeItem("userAuthToken");
+        // localStorage.removeItem("userAuthToken");
         this.updateDimensions();//updates dimensions
         window.addEventListener('resize', this.updateDimensions); //registers window resize event listener
     }
@@ -82,8 +81,7 @@ class Layout extends Component {
 
                 <div className={style.Layout}>
                     <Header>
-                        Toolbar
-                        SideDrawer
+                        <Toolbar />
                     </Header>
 
                     <Main>
@@ -93,7 +91,6 @@ class Layout extends Component {
                             <Route path={this.props.match.path} render={(props) => (
                                 <Dashboard {...props} />
                             )} />
-
 
                         </Switch>
                     </Main>

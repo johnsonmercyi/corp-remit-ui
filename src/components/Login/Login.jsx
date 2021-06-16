@@ -52,6 +52,7 @@ class Login extends Component {
             //Simulate login for test
             setTimeout(() => {
                 localStorage.setItem("userAuthToken", "true");
+                console.log(localStorage.getItem("userAuthToken"));
                 this.setState({
                     userAuth: true,
                     loginLoading: false

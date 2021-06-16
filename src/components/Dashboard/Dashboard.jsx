@@ -11,14 +11,32 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        localStorage.removeItem("userAuthToken");
     }
 
     render() {
-        console.log("Dashboard");
+        console.log(localStorage.getItem("userAuthToken"));
         return (
             <div className={style.Dashboard}>
-                Dashboard Component!
+                <div className={style.Header}>
+
+                    <div className={style.Balance}>
+                        <p className={style.Desc}>Total Active Contribution </p>
+                        <h1 className={style.Figure}>NGN 5,000</h1>
+                    </div>
+
+                    <div className={style.HeaderToolBox}>
+
+                    </div>
+
+                </div>
+
+                <div className={style.Body}>
+
+                </div>
+
+                <div className={style.Footer}>
+
+                </div>
             </div>
         );
     }

@@ -1,0 +1,79 @@
+/*Mobile First Style*/
+.NavigationItems {
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : center;
+
+    height: 100%;
+    width : 100%;
+
+    color    : white;
+    font-size: 1rem;
+
+    /* cursor: pointer; */
+
+    border-top: 0.1rem solid transparent;
+
+    margin-bottom: 0.8rem;
+
+}
+
+.NavigationItems::before {
+    content: "";
+    display: block;
+    width: 0%;
+    padding-top: 0.3rem;
+    border-top: 0.1rem solid #ffd166;
+    transition: .3s;
+}
+
+.NavigationItems:hover::before {
+    width: 100%;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+    .MobileOnly {
+        display: none;
+    }
+
+    .NavigationItems {
+        width        : 6rem;
+        border-top   : none;
+        border-bottom: 0.15rem solid transparent;
+
+        justify-content: flex-end;
+
+        padding: 0 0 0.8rem 0;
+
+        cursor: pointer;
+
+        margin-bottom: 0;
+    }
+
+    .NavigationItems::before {
+        border-top: none;
+    }
+
+    .NavigationItems::after {
+        content: "";
+        display: block;
+        width: 0%;
+        padding-top: 0.3rem;
+        border-top   : none;
+        border-bottom: 0.15rem solid #ffd166;
+        transition: .3s;
+    }
+
+    .NavigationItems:hover::after {
+        width: 80%;
+    }
+
+    /* .NavigationItems:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-top   : none;
+        border-bottom: 0.1rem solid #ffd166;
+    } */
+}
