@@ -1,5 +1,5 @@
 /*Mobile First Style*/
-.NavigationItems {
+.NavigationItem {
     display        : flex;
     flex-direction : column;
     justify-content: center;
@@ -9,17 +9,29 @@
     width : 100%;
 
     color    : white;
-    font-size: 1rem;
+    font-size: 0.8rem;
 
     /* cursor: pointer; */
 
     border-top: 0.1rem solid transparent;
 
-    margin-bottom: 0.8rem;
+    margin-bottom: 0;
 
 }
 
-.NavigationItems::before {
+p.Label {
+    transition: all .6s ease;
+}
+
+.NavigationItem.active p.Label {
+    color    : #ffd166 !important;
+}
+
+.NavigationItem.active svg {
+    fill    : #ffd166;
+}
+
+/* .NavigationItem::before {
     content: "";
     display: block;
     width: 0%;
@@ -28,8 +40,12 @@
     transition: .3s;
 }
 
-.NavigationItems:hover::before {
+.NavigationItem:hover::before {
     width: 100%;
+} */
+
+.NavigationItem:hover p.Label{
+    color: #ffd166;
 }
 
 /*Devices larger than mobile phone*/
@@ -39,7 +55,7 @@
         display: none;
     }
 
-    .NavigationItems {
+    .NavigationItem {
         width        : 6rem;
         border-top   : none;
         border-bottom: 0.15rem solid transparent;
@@ -53,11 +69,11 @@
         margin-bottom: 0;
     }
 
-    .NavigationItems::before {
+    .NavigationItem::before {
         border-top: none;
     }
 
-    .NavigationItems::after {
+    .NavigationItem::after {
         content: "";
         display: block;
         width: 0%;
@@ -67,7 +83,7 @@
         transition: .3s;
     }
 
-    .NavigationItems:hover::after {
+    .NavigationItem:hover::after {
         width: 80%;
     }
 

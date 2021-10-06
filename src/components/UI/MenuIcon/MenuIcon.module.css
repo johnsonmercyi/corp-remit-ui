@@ -1,6 +1,6 @@
 /*Mobile First Style*/
 .MenuIcon {
-    width: 1.5rem;
+    width: 1.2rem;
     height: 100%;
     margin: 0 0 0 1rem;
 
@@ -25,7 +25,7 @@
 }
 
 .MenuIcon div#Middle {
-    width: 1.1rem;
+    width: 0.9rem;
 }
 
 /*Devices larger than mobile phone*/

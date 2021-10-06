@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { LayoutContextConsumer } from '../../containers/Layout/Layout';
 
 import style from './Dashboard.module.css'
+import Home from './Home/Home';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -14,30 +16,18 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log(localStorage.getItem("userAuthToken"));
+        // console.log(localStorage.getItem("userAuthToken"));
         return (
-            <div className={style.Dashboard}>
-                <div className={style.Header}>
+            <LayoutContextConsumer>
+                {
+                    context => {
+                        return <div className={style.Dashboard}>
+                            <Home />
+                        </div>
+                    }
+                }
+            </LayoutContextConsumer>
 
-                    <div className={style.Balance}>
-                        <p className={style.Desc}>Total Active Contribution </p>
-                        <h1 className={style.Figure}>NGN 5,000</h1>
-                    </div>
-
-                    <div className={style.HeaderToolBox}>
-
-                    </div>
-
-                </div>
-
-                <div className={style.Body}>
-
-                </div>
-
-                <div className={style.Footer}>
-
-                </div>
-            </div>
         );
     }
 }

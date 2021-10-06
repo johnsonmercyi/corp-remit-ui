@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './NavigationItemsBar.module.css';
-import NavigationItems from './NavigationItems/NavigationItems';
+import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationItemsBar = (props) => {
     const { items } = props;
@@ -9,10 +9,12 @@ const NavigationItemsBar = (props) => {
         <ul className={style.NavigationItemsBar}>
             {
                 Object.keys(items).map((itemKey, index) => {
-                    return <NavigationItems
+                    return <NavigationItem
                         key={itemKey + "_" + index}
+                        active={items[itemKey].active ? true : false}
                         label={items[itemKey].label}
                         icon={items[itemKey].icon}
+                        iconFilled={items[itemKey].iconFilled}
                         showIcon={items[itemKey].showIcon} />
                 })
             }
