@@ -132,7 +132,7 @@ class RegisterUser extends Component {
                     this.setState({
                         actionError: true,
                         actionSuccess: false,
-                        isError: true,
+                        // isError: true,
                         error: {
                             name: error.name,
                             message: error.message,
