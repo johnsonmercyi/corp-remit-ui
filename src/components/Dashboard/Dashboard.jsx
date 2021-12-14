@@ -13,6 +13,8 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
+        const username = this.props.location.state;
+        console.log("Username: ", username);
     }
 
     render() {

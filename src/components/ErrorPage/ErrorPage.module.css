@@ -1,0 +1,94 @@
+/*Mobile First Style*/
+.ErrorPage {
+    
+    position: fixed;
+    top: 7.5rem;
+    left: 0;
+    
+    height: 80%;
+    width: 100%;
+    /* transform: translateY(50%); */
+
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    /* align-items    : center; */
+    width          : 100%;
+
+    transition: all 0.6s ease;
+
+    padding   : 1rem;
+    box-sizing: border-box;
+
+    /* background-color: aqua; */
+
+}
+
+.Header {
+    color         : #ef476f;
+    letter-spacing: 1px;
+    margin-top    : 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.ErrorText, .Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #ef476f; */
+    width: 100%;
+}
+
+.ErrorText p {
+    padding   : 0 1rem;
+    width: 90%;
+    word-wrap: break-word;
+    /* background-color: blue; */
+}
+
+.Desc {
+    color: rgba(7, 59, 76);
+    font-size: 0.95rem;
+    font-weight: 350;
+    letter-spacing: 1px;
+    text-align: center;
+    /* background-color: #ef476f; */
+}
+
+.ErrorCause {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+}
+
+.ErrorCause > span {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #073b4c;
+    margin-right: 0.5rem;
+    width: 10rem;
+}
+
+.ErrorCause > div {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 350;
+    letter-spacing: 1px;
+    color: #073b4c;
+    width: 100%;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+    .ErrorPage {
+        top: 3rem;
+    }
+}

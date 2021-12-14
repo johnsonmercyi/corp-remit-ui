@@ -5,7 +5,7 @@ import VisibilityIcon from '@material-ui/icons/VisibilityOutlined';
 import VisibilityIconOff from '@material-ui/icons/VisibilityOffOutlined';
 
 
-const TextField = ({ type, name, id, className, placeholder, value, onChangeHandler, isError=false, errorMessage }) => {
+const TextField = ({ type, name, id, className, placeholder, value, onChangeHandler, isError = false, errorMessage }) => {
 
     const [passwordVisibilityToggled, setPasswordVisibility] = useState(false);
     const inputRef = useRef(null);
@@ -29,15 +29,18 @@ const TextField = ({ type, name, id, className, placeholder, value, onChangeHand
                 height: "fit-content",
                 margin: "0.25rem 0"
             }}>
-                <input
-                    type={type}
-                    name={name && name}
-                    id={id && id}
-                    className={className && className}
-                    placeholder={placeholder && placeholder}
-                    value={value}
-                    onChange={(event) => onChangeHandler(event)}
-                    ref={inputRef} />
+                <div className={style.InputWrapper}>
+                    <input
+                        type={type}
+                        name={name && name}
+                        id={id && id}
+                        className={[className && className, "Input"].join(" ")}
+                        placeholder={placeholder && placeholder}
+                        value={value}
+                        onChange={(event) => onChangeHandler(event)}
+                        ref={inputRef} />
+                    <span className={style.Border}></span>
+                </div>
                 <span style={{
                     width: "100%",
                     height: "1rem",
@@ -48,7 +51,7 @@ const TextField = ({ type, name, id, className, placeholder, value, onChangeHand
                     alignItems: "flex-start",
                     transition: "all 0.5s",
                     opacity: isError ? 1 : 0
-                
+
                 }}>{errorMessage && errorMessage}</span>
             </div>
 

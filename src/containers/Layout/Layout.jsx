@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-
-import style from './Layout.module.css'
-import { Header, Main } from '../HtmlBodyParts/HtmlBodyParts';
+import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Toolbar from '../../components/UI/Toolbar/Toolbar';
+import { Header, Main } from '../HtmlBodyParts/HtmlBodyParts';
+import style from './Layout.module.css';
+
 
 const { Provider, Consumer } = React.createContext();
 
@@ -38,7 +38,7 @@ class Layout extends Component {
     }
 
     componentDidMount() {
-        // localStorage.removeItem("userAuthToken");
+        localStorage.removeItem("userAuthToken");
         this.updateDimensions();//updates dimensions
         window.addEventListener('resize', this.updateDimensions); //registers window resize event listener
     }
@@ -103,3 +103,4 @@ class Layout extends Component {
 
 export default withRouter(Layout);
 export { Consumer as LayoutContextConsumer };
+

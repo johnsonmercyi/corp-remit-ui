@@ -1,0 +1,12 @@
+/*Mobile First Style*/
+.Column {
+}
+
+.Row {}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+    .Column {}
+
+    .Row {}
+}

@@ -1,18 +1,18 @@
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import HomeIcon from '@material-ui/icons/Home';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import StorageIcon from '@material-ui/icons/Storage';
+import StorageOutlinedIcon from '@material-ui/icons/StorageOutlined';
+import WorkIcon from '@material-ui/icons/Work';
+import WorkOutlineOutlinedIcon from '@material-ui/icons/WorkOutlineOutlined';
 import React from 'react';
-
-import style from './Toolbar.module.css';
 import { CoopRemitLogo } from '../../../util/icons/Icon';
 import MenuIcon from '../MenuIcon/MenuIcon';
 import NavigationItemsBar from '../NavigationItemsBar/NavigationItemsBar';
+import style from './Toolbar.module.css';
 
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import HomeIcon from '@material-ui/icons/Home';
-import StorageOutlinedIcon from '@material-ui/icons/StorageOutlined';
-import StorageIcon from '@material-ui/icons/Storage';
-import WorkOutlineOutlinedIcon from '@material-ui/icons/WorkOutlineOutlined';
-import WorkIcon from '@material-ui/icons/Work';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 const Toolbar = ({ }) => {
     return (

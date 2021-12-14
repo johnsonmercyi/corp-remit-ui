@@ -8,7 +8,7 @@ const progressPage = (props) => {
         style={{
             backgroundColor: props.backgroundColor && props.backgroundColor
         }}
-        className={[style.ProgressPage, props.load ? style.Load : null].join(" ")}>
+        className={[style.ProgressPage, props.load ? style.Load : null, props.action ? style.Action : null].join(" ")}>
             {props.children}
         </div>
     );

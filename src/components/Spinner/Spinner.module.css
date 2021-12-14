@@ -1,0 +1,30 @@
+/*Mobile First Style*/
+.SpinnerWrapper {
+
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    transform: translateY(500%);
+
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 100%;
+
+    transition: all 0.6s ease;
+    box-sizing: border-box;
+}
+
+.Spinner {
+    margin: 0;
+    width: 100%;
+    transition: all 0.6s ease;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+    .SpinnerWrapper {
+        top     : 3rem;
+        transform: translateY(350%);
+    }
+}

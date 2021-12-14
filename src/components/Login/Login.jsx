@@ -1,15 +1,19 @@
-import React, { Component } from 'react'
-
-import style from './Login.module.css';
-import ripple from '../../assets/css/ripple.module.css';
-import { CoopRemitLogo } from '../../util/icons/Icon';
-import TextField from '../UI/TextField/TextField';
-import CheckBox from '../UI/CheckBox/CheckBox';
-import ProgressPage from '../UI/Progress/ProgressPage';
-import CircularIndeterminate from '../UI/Progress/CircularIndeterminate/CircularIndeterminate';
-import Aux from '../../hoc/Auxilliary/Auxilliary';
-import CustomProgress from '../UI/Progress/CustomProgress/CustomProgress';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Column, Row } from '../../containers/Grid/Grid';
+import Aux from '../../hoc/Auxilliary/Auxilliary';
+import axios, { controllerPath } from '../../util/axios';
+import { CoopRemitLogo } from '../../util/icons/Icon';
+import * as util from '../../util/util';
+import MUIButton from '../UI/MUI/Button/Button';
+import MUITextField from '../UI/MUI/TextField/TextField';
+import MUIPasswordField from '../UI/MUI/PasswordField/PasswordField';
+import CustomProgress from '../UI/Progress/CustomProgress/CustomProgress';
+import ProgressPage from '../UI/Progress/ProgressPage';
+import style from './Login.module.css';
+import CustomAlert from '../Alert/CustomAlert';
+
 
 class Login extends Component {
 
@@ -18,6 +22,12 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
+            showPassword: false,
+            error: {
+                name: "",
+                message: "",
+                subMessage: ""
+            },
             errors: {
                 username: {
                     isError: false,
@@ -32,7 +42,14 @@ class Login extends Component {
             passwordError: false,
             loginLoading: false,
             rememberMe: false,
-            userAuth: false
+            userAuth: false,
+            user: null,
+            alert: {
+                show: false,
+                error: false,
+                severity: "success",
+                message: ""
+            }
         }
     }
 
@@ -42,6 +59,21 @@ class Login extends Component {
         }
     }
 
+    showPasswordHandler = () => this.setState(state => ({
+        showPassword: !state.showPassword
+    }));
+
+    alertCloseHandler = () => {
+        this.setState(state => ({
+            alert: {
+                show: false,
+                error: state.alert.error,
+                severity: state.alert.severity,
+                message: state.alert.message,
+            }
+        }));
+    }
+
     login = () => {
         if (this.state.username.trim() && this.state.password.trim()) {
 
@@ -49,15 +81,77 @@ class Login extends Component {
                 loginLoading: true
             });
 
-            //Simulate login for test
-            setTimeout(() => {
-                localStorage.setItem("userAuthToken", "true");
-                console.log(localStorage.getItem("userAuthToken"));
-                this.setState({
-                    userAuth: true,
-                    loginLoading: false
+            axios.post(controllerPath.login, {
+                username: this.state.username,
+                password: this.state.password
+            })
+                .then(response => {
+                    const userData = response.data;
+
+
+                    if (userData.success) {
+                        console.log("Response: ", response.data);
+                        //Simulate login for test
+                        setTimeout(() => {
+                            localStorage.setItem("userAuthToken", userData.success);
+                            this.setState({
+                                userAuth: true,
+                                loginLoading: false,
+                                user: userData.user
+                            });
+                        }, 2000);
+                    } else {
+                        console.log("Response: ", response.data);
+                        this.setState({
+                            password: "",
+                            loginLoading: false,
+                            error: {
+                                name: "",
+                                message: userData.message,
+                                subMessage: ""
+                            },
+                            errors: {
+                                username: {
+                                    isError: true,
+                                    errorMessage: ""
+                                },
+                                password: {
+                                    isError: true,
+                                    errorMessage: ""
+                                }
+                            },
+                            alert: {
+                                show: true,
+                                error: true,
+                                severity: "error",
+                                message: userData.message
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    this.setState({
+                        loginLoading: false,
+                        error: {
+                            name: error.name,
+                            message: error.message,
+                            subMessage: error.subMessage
+                        },
+                        alert: {
+                            show: true,
+                            error: true,
+                            severity: "error",
+                            message: error.message
+                        }
+                    });
+                })
+                .finally (() => {
+                    console.log("Error: ", this.state.error);
                 });
-            }, 7000);
+
+
+
+
 
             // This portion of code should execute upon a successful validation of the user on the server.
             // localStorage.setItem("userAuthToken", "true");
@@ -82,7 +176,7 @@ class Login extends Component {
                         }
                     }
                 });
-            }else if (!this.state.username.trim()) {
+            } else if (!this.state.username.trim()) {
 
                 this.setState((state) => {
                     return {
@@ -98,7 +192,7 @@ class Login extends Component {
                         }
                     }
                 });
-            }else if (!this.state.password.trim()) {
+            } else if (!this.state.password.trim()) {
 
                 this.setState((state) => {
                     return {
@@ -118,11 +212,11 @@ class Login extends Component {
         }
     }
 
-    onChangeHandler = (event) => {
+    onChangeHandler = (event, type) => {
         this.setState((state) => {
             return {
-                username: event.target.type === "text" ? event.target.value : state.username,
-                password: event.target.type === "password" ? event.target.value : state.password,
+                username: type === "text" ? event.target.value : state.username,
+                password: type === "password" ? event.target.value : state.password,
                 errors: event.target.type === "text" ? {
                     username: event.target.value !== "" ? {
                         isError: false,
@@ -163,15 +257,20 @@ class Login extends Component {
 
     render() {
 
-        console.log("Loging!");
+        // console.log("Loging!");
 
         if (this.state.userAuth) {
             // console.log("You were logged in!");
-            return <Redirect to="/" />;
+            return <Redirect to={{
+                pathname: "/dashboard",
+                state: {
+                    username: this.state.user.username
+                }
+            }} />;
         } else {
+            console.log(this.props.history.location.pathname);
             return (
                 <Aux>
-    
                     <ProgressPage
                         backgroundColor={"#7f5539"}
                         load={this.state.loginLoading}>
@@ -182,7 +281,7 @@ class Login extends Component {
                             strokeColor="#ffd166" />
                         {/* <span className={style.Text}>Please wait, we're logging you in!</span> */}
                     </ProgressPage>
-    
+
                     <div className={style.Login}>
                         <div className={style.Content}>
                             <div className={style.Logo}>
@@ -190,71 +289,89 @@ class Login extends Component {
                                     width={"4rem"}
                                     height={"4rem"}
                                     strokeColor="#fff" />
-    
+
                                 <h1 className={style.LogoText}>CooRe</h1>
-    
+
                             </div>
-    
+
                             <div className={style.Body}>
                                 <h1 className={style.Header}>Please Login</h1>
                                 <div className={style.Form}>
-                                    <TextField
-                                        onChangeHandler={this.onChangeHandler}
-                                        value={this.state.username}
-                                        type="text"
-                                        name="username"
-                                        id={style.Username}
-                                        placeholder="Username"
-                                        isError={this.state.errors.username.isError}
-                                        errorMessage={this.state.errors.username.errorMessage} />
-    
-                                    <TextField
-                                        onChangeHandler={this.onChangeHandler}
-                                        value={this.state.password}
-                                        type="password"
-                                        name="password"
-                                        id={style.Password}
-                                        placeholder="Password"
-                                        isError={this.state.errors.password.isError}
-                                        errorMessage={this.state.errors.password.errorMessage} />
-    
-                                    <div className={style.CheckBoxWrapper}>
+
+                                    <Row extraClasses={["g-2"]}>
+                                        <Column extraClasses={["col-12"]}>
+                                            <MUITextField
+                                                key={"username_field"}
+                                                id={style.Username}
+                                                value={this.state.username}
+                                                error={this.state.errors.username.isError}
+                                                helperText={this.state.errors.username.errorMessage}
+                                                label="Username"
+                                                onChange={(event) => this.onChangeHandler(event, "text")} />
+                                        </Column>
+
+                                        <Column extraClasses={["col-12"]}>
+                                            <MUIPasswordField
+                                                key={"password_field"}
+                                                showPassword={this.state.showPassword}
+                                                id={style.Password}
+                                                value={this.state.password}
+                                                error={this.state.errors.password.isError}
+                                                helperText={this.state.errors.password.errorMessage}
+                                                label="Password"
+                                                onChange={(event) => this.onChangeHandler(event, "password")}
+                                                showPasswordHandler={this.showPasswordHandler} />
+                                        </Column>
+                                    </Row>
+
+                                    {/* <div className={style.CheckBoxWrapper}>
                                         <CheckBox
                                             checked={this.state.rememberMe ? "checked" : ""}
                                             rememberMeToggleHandler={this.rememberMeToggleHandler}
                                             label="Remember Me"
                                             name="rememberMe"
                                             id={style.RememberMe} />
-                                    </div>
-    
+                                    </div> */}
+
                                     <div className={style.LoginButtonWrapper}>
-                                        <button
-                                            onClick={(event) => this.loginHandler(event)}
-                                            className={[style.LoginButton, ripple.ripple].join(" ")}>
-                                            Login
-                                    </button>
+
+                                        <MUIButton
+                                            buttonText="Login"
+                                            onClick={(event) => this.loginHandler(event)} />
                                     </div>
-    
+
                                     <div className={style.BodyFooter}>
                                         <a
                                             id={style.ForgetPassword}
                                             href="javacript:void(0)">Forgot Password? </a>
-    
+
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div className={style.Footer}>
                                 <span>New to CooRe?</span>
-                                <a
-                                    id={style.SignUp}
-                                    href="javacript:void(0)">Sign Up! </a>
+                                <Link to={{
+                                    pathname: util.paths.signup
+                                }} id={style.SignUp}>
+                                    Sign Up!
+                                </Link>
                             </div>
                         </div>
+
+                        <div className={style.AlertWrapper}>
+                            {
+                                <CustomAlert
+                                    open={this.state.alert.show}
+                                    severity={this.state.alert.severity}
+                                    message={this.state.alert.message}
+                                    alertCloseHandler={this.alertCloseHandler} />
+                            }
+                        </div>
                     </div>
-    
+
                 </Aux>
-    
+
             );
         }
 

@@ -5,6 +5,7 @@ import './App.css';
 import Layout from './containers/Layout/Layout';
 import Login from './components/Login/Login';
 import ProtectedRoute from './util/route/ProtectedRoute';
+import RegisterUser from './components/Modules/User/Register/RegisterUser';
 
 class App extends Component {
 
@@ -15,7 +16,12 @@ class App extends Component {
           <Switch>
             {/* Login Component Route */}
             <Route path="/login" exact render={(props) => (
-              <Login {...props}/>
+              <Login {...props} />
+            )} />
+
+            {/* Register User Component*/}
+            <Route path="/sign-up" exact render={(props) => (
+              <RegisterUser {...props} />
             )} />
 
             <ProtectedRoute path="/">

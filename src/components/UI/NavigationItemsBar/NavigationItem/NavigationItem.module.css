@@ -11,7 +11,7 @@
     color    : white;
     font-size: 0.8rem;
 
-    /* cursor: pointer; */
+    cursor: pointer;
 
     border-top: 0.1rem solid transparent;
 
@@ -21,6 +21,7 @@
 
 p.Label {
     transition: all .6s ease;
+    margin: 0;
 }
 
 .NavigationItem.active p.Label {
@@ -67,6 +68,9 @@ p.Label {
         cursor: pointer;
 
         margin-bottom: 0;
+        font-size: 1rem;
+
+        transition: all 0.8s ease;
     }
 
     .NavigationItem::before {
@@ -87,9 +91,9 @@ p.Label {
         width: 80%;
     }
 
-    /* .NavigationItems:hover {
+    .NavigationItem:hover {
         background-color: rgba(0, 0, 0, 0.1);
         border-top   : none;
-        border-bottom: 0.1rem solid #ffd166;
-    } */
+        /* border-bottom: 0.1rem solid #91ff66; */
+    }
 }

@@ -25,6 +25,11 @@
     opacity  : 1;
 }
 
+.ProgressPage.Load.Action {
+    justify-content: flex-start;
+    padding-top: 5rem;
+}
+
 /*Devices larger than mobile phone*/
 @media (min-width: 576px) {
     .ProgressPage {

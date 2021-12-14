@@ -1,6 +1,7 @@
 /*Mobile First Style*/
 .TextField {
     width: 100%;
+    position: relative;
     /* margin: 1rem 0; */
 }
 
@@ -36,8 +37,12 @@
 }
 
 .TextField .passwordVisibilityToggler {
-    margin-left: 85%;
-    margin-top: -3.9rem;
+    position: absolute;
+    top: 25%;
+    left: 87%;
+    display: block;
+    z-index: 1;
+    cursor: pointer;
     color: rgba(0, 0, 0, 1);
     opacity: 0.7;
 

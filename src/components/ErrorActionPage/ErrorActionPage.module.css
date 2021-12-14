@@ -1,0 +1,36 @@
+/*Mobile First Style*/
+.ErrorActionPage {
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ErrorActionPage h1, .ErrorActionPage h4 {
+    color: white;
+}
+.ErrorActionPage h1 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffd166;
+}
+
+.ErrorActionPage h4 {
+    font-weight: 300;
+    padding: 0 2rem;
+}
+
+.ButtonWrapper {
+    margin: 3rem auto;
+    padding: 0;
+    width: 10rem;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+}
+
