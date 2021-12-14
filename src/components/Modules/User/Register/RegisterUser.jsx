@@ -383,12 +383,7 @@ class RegisterUser extends Component {
             return component;
 
         }
-        return this.state.isError ?
-            <ErrorPage
-                header={this.state.error.name}
-                description={this.state.error.message}
-                possibleCause={this.state.error.subMessage ? this.state.error.subMessage : null} /> :  //error component
-            <Aux>
+        return <Aux>
                 <ProgressPage
                     backgroundColor={"#7f5539"}
                     load={this.state.actionLoading}

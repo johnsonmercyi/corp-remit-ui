@@ -28,9 +28,13 @@ class App extends Component {
               <Layout />
             </ProtectedRoute>
 
-            <Route path="*">
+            <ProtectedRoute path="*">
               <Redirect from="/" to="/dashboard" />
-            </Route>
+            </ProtectedRoute>
+
+            {/* <Route path="*">
+              <Redirect from="/" to="/dashboard" />
+            </Route> */}
 
           </Switch>
         </div>
