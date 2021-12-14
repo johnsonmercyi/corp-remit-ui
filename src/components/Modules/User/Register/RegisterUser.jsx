@@ -432,7 +432,7 @@ class RegisterUser extends Component {
                                             width="100%"
                                             value={this.state.form.selectGender}
                                             menuItems={[
-                                                { value: "none", label: "" },
+                                                // { value: "none", label: "" },
                                                 ...this.state.form.genders
                                             ]}
                                             onChange={this.onChangeHandler("selectGender")}>
@@ -509,10 +509,6 @@ class RegisterUser extends Component {
 
                 </div>
             </Aux>
-
-
-
-
     }
 }
 
