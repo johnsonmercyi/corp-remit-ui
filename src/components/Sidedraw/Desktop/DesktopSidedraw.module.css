@@ -1,0 +1,16 @@
+/*Mobile First Style*/
+.DesktopSidedraw {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 2.5rem;
+    height: 100%;
+
+    background-color: white;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+}
