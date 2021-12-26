@@ -38,7 +38,18 @@ class Layout extends Component {
     }
 
     componentDidMount() {
-        localStorage.removeItem("userAuthToken");
+        /**
+         * Here, make request to the server (isTokenExpired API point) to
+         * check if the token is expired.
+         * 
+         * If expired:
+         *      - mark the user login token in the db as expired
+         *      - return true here and remove the userAuthToken key in the localStorage
+         *      - that returns us to the login page authomatically
+         * If not expired:
+         *      - Do nothing. Just load in the dashboard that's all.
+         */
+        // localStorage.removeItem("userAuthToken");
         this.updateDimensions();//updates dimensions
         window.addEventListener('resize', this.updateDimensions); //registers window resize event listener
     }
