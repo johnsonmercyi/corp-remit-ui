@@ -96,8 +96,8 @@ class Layout extends Component {
                         <Toolbar />
                     </Header>
 
-                    <Main>
-                        <DesktopSidedraw />
+                    <Main style={[style.Main]}>
+                        {/* <DesktopSidedraw /> */}
                         <Switch>
 
                             {/* Dashboard Component*/}

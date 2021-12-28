@@ -5,7 +5,7 @@ export const Header = (props) => (
 );
 
 export const Main = (props) => (
-    <main>
+    <main className={[...props.style].join(" ")}>
         {props.children}
     </main>
 );
