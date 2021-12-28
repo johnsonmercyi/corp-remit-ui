@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Dashboard from '../../components/Dashboard/Dashboard';
+import DesktopSidedraw from '../../components/Sidedraw/Desktop/DesktopSidedraw';
 import Toolbar from '../../components/UI/Toolbar/Toolbar';
 import { Header, Main } from '../HtmlBodyParts/HtmlBodyParts';
 import style from './Layout.module.css';
@@ -96,6 +97,7 @@ class Layout extends Component {
                     </Header>
 
                     <Main>
+                        <DesktopSidedraw />
                         <Switch>
 
                             {/* Dashboard Component*/}
